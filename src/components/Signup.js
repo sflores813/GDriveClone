@@ -6,15 +6,15 @@ export default function Signup() {
     const emailRef = useRef() 
     const passwordRef = useRef()
     const passwordConfirmRef = useRef()
-    const { signup } = useAuth()
+    const { signup, } = useAuth()
     const [error, setError] = useState("")
     const [loading, setLoading] = useState(false)
     // const history = useHistory
 
     async function handleSubmit(e) {
-        e.prevent()
+        e.preventDefault()
         if (passwordRef.current.value !== passwordConfirmRef.current.value){
-            return setError('Passwords do not match')
+            return setError("Passwords do not match")
         }
 
         try {
@@ -36,6 +36,7 @@ export default function Signup() {
         <Card>
             <Card.Body>
                 <h2 className="text-center mb-4">Sign Up</h2>
+                
                 {error && <Alert variant="danger">{error}</Alert>}
                 <Form onSubmit={handleSubmit}>
                     <Form.Group id ="email">
@@ -47,7 +48,7 @@ export default function Signup() {
                         <Form.Control type="password" ref={passwordRef} required />
                     </Form.Group>
                     <Form.Group id ="password-confirm">
-                        <Form.Label>Password Confirm</Form.Label>
+                        <Form.Label>Password Confirmation</Form.Label>
                         <Form.Control type="password" ref={passwordConfirmRef} required />
                     </Form.Group>
                     <Button disabled={loading} className="w-100" type="submit">
@@ -57,7 +58,7 @@ export default function Signup() {
             </Card.Body>
         </Card>
         <div className="w-100 text-center mt-2">
-            Already have an account? 
+            Already have an account? log in 
         </div>
         </>
         )
