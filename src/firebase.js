@@ -16,8 +16,16 @@ const app = firebase.initializeApp({
 // alows to add folders into firebase.
 const firestore = app.firestore()
 export const database = {
-   folders: firestore.collection('folders'), 
-   files: firestore.collection('files') 
+    // gets the folders
+   folders: firestore.collection('folders'),
+    // gets the files
+   files: firestore.collection('files'),
+//    formats the docs
+formatDoc: doc => {
+    return { id: doc.id, ...doc.data() }
+},
+//    gets the timestamp from the file
+   getCurrentTimestamp: firebase.firestore.FieldValue.serverTimestamp, 
 }
 export const auth = app.auth()
 export default app

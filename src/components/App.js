@@ -19,6 +19,7 @@ function App() {
             <Switch>
               {/* google clone routes */}
               <PrivateRoute exact path="/" component={Dashboard} />
+              <PrivateRoute exact path ="/folder/:folderId" component={Dashboard} />
               {/* Profile */}
               <PrivateRoute exact path="/user" component={Dashboard} />
               <PrivateRoute path="/update-profile" component={UpdateProfile} />
