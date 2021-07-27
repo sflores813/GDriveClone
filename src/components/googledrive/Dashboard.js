@@ -2,16 +2,18 @@ import React from 'react'
 import { Container } from 'react-bootstrap'
 import { useFolder, } from '../../hooks/useFolder'
 import AddFolderButton from './AddFolderButton'
+import AddFileButton from './AddFileButton'
 import Folder from './Folder' 
-import { useParams } from 'react-router-dom'
+import { useParams, useLocation } from 'react-router-dom'
 import FolderBreadCrumbs from './FolderBreadCrumbs'
 
 import Navbar from './Navbar'
 
 export default function Dashboard() {
     const { folderId } = useParams()
-    const { folder, childFolders} = useFolder(folderId)
-    console.log(childFolders)
+    const { state = {} } = useLocation()
+    const { folder, childFolders} = useFolder(folderId, state.folder)
+    
     
     return <>
     <Navbar />
@@ -19,8 +21,9 @@ export default function Dashboard() {
         {/* setting up breadcrumbs */}
         <div className="d-flex align-items-center">
             <FolderBreadCrumbs currentFolder={folder} />
+            <AddFolderButton currentFolder={folder} />
+            <AddFileButton currentFolder={folder} />
 
-        <AddFolderButton currentFolder={folder} />
         </div>
         {childFolders.length > 0 && (
             <div className="d-flex flex-wrap">

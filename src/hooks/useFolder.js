@@ -71,6 +71,7 @@ export function useFolder(folderId = null, folder = null) {
         })
       })
       .catch(() => {
+        
         dispatch({
           type: ACTIONS.UPDATE_FOLDER,
           payload: { folder: ROOT_FOLDER },
